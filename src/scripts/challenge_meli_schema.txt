@@ -1,0 +1,57 @@
+DROP DATABASE IF EXISTS ChallengeMeLi;
+
+CREATE DATABASE IF NOT EXISTS ChallengeMeLi;
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.Users (
+   user_id varchar(20) NOT NULL,
+   name varchar(50) NOT NULL,
+   email varchar(50)  NOT NULL,
+   PRIMARY KEY (user_id)
+);
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.UserManagers (
+   row_id int(11) NOT NULL,
+   user_id varchar(20) NOT NULL,
+   user_state varchar(20)  NOT NULL,
+   user_manager  varchar(50) NOT NULL,
+   PRIMARY KEY  (user_id),
+   FOREIGN KEY (user_id) REFERENCES ChallengeMeLi.Users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.DatabaseInfos (
+   row_id int(11) NOT NULL AUTO_INCREMENT,
+   name varchar(50) NOT NULL,
+   owner_id varchar(20) NOT NULL,
+   time_stamp  datetime NOT NULL,
+   PRIMARY KEY  (row_id),
+   FOREIGN KEY (owner_id) REFERENCES ChallengeMeLi.Users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.DatabaseInfoClassifications (
+   row_id int(11) NOT NULL AUTO_INCREMENT,
+   confidentiality varchar(10) NULL,
+   integrity varchar(10) NULL,
+   availability varchar(10) NULL,
+   database_info_id int(11) NOT NULL,
+   PRIMARY KEY  (row_id),
+   FOREIGN KEY (database_info_id) REFERENCES ChallengeMeLi.DatabaseInfos(row_id)
+);
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.Validations (
+   row_id int(11) NOT NULL AUTO_INCREMENT,
+   db_name varchar(10) NOT NULL,
+   owner_email varchar(50) NOT NULL,
+   manager_email varchar(50) NULL,
+   classification varchar(30)  NOT NULL,
+   PRIMARY KEY  (row_id)
+);
+
+CREATE TABLE IF NOT EXISTS ChallengeMeLi.Emails (
+   row_id int(11) NOT NULL AUTO_INCREMENT,
+   `to` varchar(50) NOT NULL,
+   `subject` varchar(50) NOT NULL,
+   body varchar(100) NOT NULL,
+   sent bit  NOT NULL DEFAULT 0,
+   sent_at datetime NULL,
+   PRIMARY KEY  (row_id)
+);
