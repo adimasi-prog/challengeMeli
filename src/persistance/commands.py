@@ -1,9 +1,9 @@
 import mysql.connector
 
-mysql_host = 'localhost'
+mysql_host = 'mysql'
 mysql_database = 'ChallengeMeLi'
 mysql_user = 'root'
-mysql_pass = 'Installer'
+mysql_pass = '123456'
 schema_create_script_file_path = './scripts/challenge_meli_schema.txt'
 
 def add_database_info(name, owner_id, time_stamp):

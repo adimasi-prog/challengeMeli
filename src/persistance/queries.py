@@ -3,10 +3,10 @@ import mysql.connector
 import models.validation
 import models.emails
 
-mysql_host = 'localhost'
+mysql_host = 'mysql'
 mysql_database = 'ChallengeMeLi'
 mysql_user = 'root'
-mysql_pass = 'Installer'
+mysql_pass = '123456'
 
 def get_all_validation_info():
     validations = []
